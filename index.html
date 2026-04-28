@@ -107,13 +107,15 @@ footer {
   margin-top: 40px;
   color: #666;
   font-size: 14px;
-  animation: bounce 1.5s infinite;
   letter-spacing: 2px;
-}
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); opacity: 0.6; }
-  50% { transform: translateY(8px); opacity: 1; }
+  /* CENTRADO REAL */
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  animation: bounce 1.5s infinite;
 }
    
 </style>
