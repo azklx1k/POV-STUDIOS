@@ -8,10 +8,14 @@
 
 <style>
 
+/* =========================
+   POV STUDIOS CLEAN PRO
+   ========================= */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #050507;
+  background: #0b0b0f;
   color: white;
 }
 
@@ -21,74 +25,81 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 8%;
-  background: radial-gradient(circle at top right, #1a1a2e, #050507 60%);
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at top, #1a1a2e, #0b0b0f 60%);
 }
 
 .hero h1 {
-  font-size: 90px;
+  font-size: 80px;
   margin: 0;
-  letter-spacing: 6px;
+  letter-spacing: 5px;
 }
 
 .hero p {
-  color: #999;
-  font-size: 20px;
-  max-width: 500px;
+  color: #aaa;
+  font-size: 18px;
+  margin-top: 10px;
 }
 
+/* BUTTON */
 .btn {
   margin-top: 25px;
-  padding: 14px 26px;
+  padding: 14px 22px;
   background: #5865F2;
   color: white;
   text-decoration: none;
-  border-radius: 8px;
-  width: fit-content;
+  border-radius: 10px;
   transition: 0.3s;
 }
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 20px rgba(88,101,242,0.4);
+  transform: scale(1.05);
+  background: #7b84ff;
 }
 
-/* TOP SECTION (TODO ARRIBA EN BLOQUE) */
-.top-section {
-  position: absolute;
-  top: 20%;
-  right: 8%;
+/* SECTION */
+.section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* GRID */
+.grid {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
 }
 
-/* CARDS PEQUEÑAS ARRIBA */
+/* CARDS */
 .card {
-  background: #12121a;
+  background: #141420;
   border: 1px solid #222;
   padding: 20px;
   border-radius: 14px;
-  width: 280px;
-
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeIn 0.6s ease forwards;
-
+  width: 260px;
   transition: 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-8px);
   border-color: #5865F2;
-  box-shadow: 0 15px 35px rgba(88,101,242,0.25);
+  box-shadow: 0 10px 25px rgba(88,101,242,0.25);
 }
+
+/* ICONS */
+.icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
 }
 
 /* FOOTER */
 footer {
   text-align: center;
-  padding: 60px;
+  padding: 50px;
   color: #555;
 }
 
@@ -101,39 +112,68 @@ footer {
 <!-- HERO -->
 <section class="hero">
   <h1>POV STUDIOS</h1>
-  <p>We build Roblox systems, games and immersive experiences.</p>
+  <p>Roblox Development Studio</p>
 
-  <a class="btn" href="https://discord.gg/6JD8yGd4Y">Join to Communication Server</a>
+  <a class="btn" href="https://discord.gg/">Join Discord</a>
 </section>
 
-<!-- TODO ARRIBA (ESTILO SERKNET PANEL DERECHO) -->
-<div class="top-section">
+<!-- CARDS SECTION -->
+<section class="section">
 
-  <div class="card">
-    <h3>Game Development</h3>
-    <p>Full Roblox experiences.</p>
+  <h2>What we do</h2>
+
+  <div class="grid">
+
+    <!-- GAME DEV -->
+    <div class="card">
+      <div class="icon">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+          <path d="M3 7l9-4 9 4-9 4-9-4z" stroke="#5865F2" stroke-width="2"/>
+          <path d="M3 7v10l9 4 9-4V7" stroke="#5865F2" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3>Game Development</h3>
+      <p>We build full Roblox experiences from scratch.</p>
+    </div>
+
+    <!-- SYSTEMS -->
+    <div class="card">
+      <div class="icon">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L5.5 20l2-7L2 9h7l3-7z" stroke="#5865F2" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3>Systems</h3>
+      <p>Jobs, gangs, economy and RP systems.</p>
+    </div>
+
+    <!-- UI DESIGN -->
+    <div class="card">
+      <div class="icon">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="3" width="18" height="14" rx="2" stroke="#5865F2" stroke-width="2"/>
+          <path d="M8 21h8" stroke="#5865F2" stroke-width="2"/>
+          <path d="M12 17v4" stroke="#5865F2" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3>UI Design</h3>
+      <p>Clean interfaces and modern UI systems.</p>
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="card">
+      <div class="icon">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+          <path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" stroke="#5865F2" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3>Support Team</h3>
+      <p>We help users and manage community issues.</p>
+    </div>
+
   </div>
 
-  <div class="card">
-    <h3>Systems</h3>
-    <p>RP, gangs, jobs & economy.</p>
-  </div>
-
-  <div class="card">
-    <h3>UI Design</h3>
-    <p>Modern interfaces & clean visuals.</p>
-  </div>
-
-  <div class="card">
-    <h3>Hall of Fame RP</h3>
-    <p>Main project in development.</p>
-  </div>
-  
-  <div class="card">
-    <h3>SUPPORT TEAM</h3>
-    <p>24/7 IN DISCORD</p>
-  </div>
-</div>
+</section>
 
 <footer>
 POV STUDIOS © 2026
