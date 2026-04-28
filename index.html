@@ -8,83 +8,81 @@
 
 <style>
 
-/* =========================
-   POV STUDIOS - CLEAN START
-   ========================= */
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0b0b0f;
+  background: #050507;
   color: white;
 }
 
-/* HERO SECTION */
+/* HERO */
 .hero {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: radial-gradient(circle at top, #1a1a2e, #0b0b0f 60%);
+  padding-left: 8%;
+  background: radial-gradient(circle at top right, #1a1a2e, #050507 60%);
 }
 
 .hero h1 {
-  font-size: 80px;
+  font-size: 90px;
   margin: 0;
-  letter-spacing: 5px;
+  letter-spacing: 6px;
 }
 
 .hero p {
-  color: #aaa;
-  font-size: 18px;
-  margin-top: 10px;
+  color: #999;
+  font-size: 20px;
+  max-width: 500px;
 }
 
-/* BUTTON */
 .btn {
   margin-top: 25px;
-  padding: 14px 22px;
+  padding: 14px 26px;
   background: #5865F2;
   color: white;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 8px;
+  width: fit-content;
   transition: 0.3s;
 }
 
 .btn:hover {
-  background: #7b84ff;
-  transform: scale(1.05);
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(88,101,242,0.4);
 }
 
-/* SECTION */
-.section {
-  padding: 80px 20px;
-  text-align: center;
+/* TOP SECTION (TODO ARRIBA EN BLOQUE) */
+.top-section {
+  position: absolute;
+  top: 20%;
+  right: 8%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-/* CARD */
+/* CARDS PEQUEÑAS ARRIBA */
 .card {
-  background: #141420;
+  background: #12121a;
   border: 1px solid #222;
-  padding: 20px;
+  padding: 18px;
   border-radius: 12px;
-  max-width: 300px;
-  margin: 20px auto;
+  width: 280px;
   transition: 0.3s;
 }
 
 .card:hover {
-  border-color: #5865F2;
-  box-shadow: 0 0 20px rgba(88,101,242,0.25);
   transform: translateY(-5px);
+  border-color: #5865F2;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 /* FOOTER */
 footer {
   text-align: center;
-  padding: 40px;
+  padding: 60px;
   color: #555;
 }
 
@@ -97,34 +95,36 @@ footer {
 <!-- HERO -->
 <section class="hero">
   <h1>POV STUDIOS</h1>
-  <p>Roblox Development Studio</p>
+  <p>We build Roblox systems, games and immersive experiences.</p>
 
   <a class="btn" href="https://discord.gg/">Join Discord</a>
 </section>
 
-<!-- ABOUT -->
-<section class="section">
-  <h2>About Us</h2>
+<!-- TODO ARRIBA (ESTILO SERKNET PANEL DERECHO) -->
+<div class="top-section">
 
   <div class="card">
-    We build Roblox experiences, systems and immersive roleplay worlds.
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section class="section">
-  <h2>Projects</h2>
-
-  <div class="card">
-    Hall of Fame RP (in development)
+    <h3>Game Development</h3>
+    <p>Full Roblox experiences.</p>
   </div>
 
   <div class="card">
-    Roblox Systems & UI Tools
+    <h3>Systems</h3>
+    <p>RP, gangs, jobs & economy.</p>
   </div>
-</section>
 
-<!-- FOOTER -->
+  <div class="card">
+    <h3>UI Design</h3>
+    <p>Modern interfaces & clean visuals.</p>
+  </div>
+
+  <div class="card">
+    <h3>Hall of Fame RP</h3>
+    <p>Main project in development.</p>
+  </div>
+
+</div>
+
 <footer>
 POV STUDIOS © 2026
 </footer>
