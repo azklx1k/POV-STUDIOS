@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POV STUDIOS — Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter;background:#0b0b0f;color:white;overflow-x:hidden}
+html{scroll-behavior:smooth}
+
+/* NAVBAR */
+nav{
+position:fixed;width:100%;padding:20px 60px;
+display:flex;justify-content:space-between;align-items:center;
+backdrop-filter:blur(10px);background:rgba(10,10,15,.5);
+}
+nav a{color:#aaa;text-decoration:none;margin-left:25px}
+nav a:hover{color:white}
+
+/* PAGE */
+.section{padding:120px 40px;text-align:center}
+.grid{display:flex;flex-wrap:wrap;justify-content:center;gap:25px;margin-top:40px}
+
+/* CARDS */
+.card{
+width:250px;padding:25px;border-radius:14px;
+background:#141420;border:1px solid #222;
+transition:.4s;text-align:center;
+}
+.card:hover{
+transform:translateY(-10px);
+border-color:#5865F2;
+box-shadow:0 20px 40px rgba(0,0,0,.6);
+}
+.icon{width:60px;margin-bottom:15px;filter:invert(1)}
+.role{color:#5865F2;font-size:14px;margin-top:5px}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>POV STUDIOS</h2>
+<div>
+<a href="index.html">Home</a>
+<a href="work.html">Our Work</a>
+</div>
+</nav>
+
+<!-- LEADERSHIP -->
+<section class="section">
+<h1>Leadership</h1>
+<div class="grid">
+
+<div class="card">
+<img class="icon" src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
+<h3>Founder / CEO</h3>
+<p class="role">Studio Owner</p>
+</div>
+
+<div class="card">
+<img class="icon" src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png">
+<h3>Studio Manager</h3>
+<p class="role">Operations</p>
+</div>
+
+</div>
+</section>
+
+<!-- DEVELOPMENT -->
+<section class="section">
+<h1>Development</h1>
+<div class="grid">
+
+<div class="card">
+<img class="icon" src="https://cdn-icons-png.flaticon.com/512/1006/1006363.png">
+<h3>Lead Developer</h3>
+<p class="role">Programming</p>
+</div>
+
+<div class="card">
+<img class="icon" src="https://cdn-icons-png.flaticon.com/512/906/906324.png">
+<h3>Scripter Lead</h3>
+<p class="role">Systems</p>
+</div>
+
+<div class="card">
+<img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png">
+<h3>UI/UX Designer</h3>
+<p class="role">Interface Design</p>
+</div>
+
+</div>
+</section>
+
+<!-- BUSINESS -->
+<section class="section">
+<h1>Business & Growth</h1>
+<div class="grid">
+
+<div class="card">
+<img class="icon" src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png">
+<h3>Community Manager</h3>
+<p class="role">Community</p>
+</div>
+
+<div class="card">
+<img class="icon" src="https://cdn-icons-png.flaticon.com/512/929/929564.png">
+<h3>Marketing Manager</h3>
+<p class="role">Growth</p>
+</div>
+
+</div>
+</section>
+
+</body>
+</html>
