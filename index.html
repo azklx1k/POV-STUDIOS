@@ -3,200 +3,261 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>POV STUDIOS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================
-   POV STUDIOS CLEAN PRO
-   ========================= */
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b0b0f;
-  color: white;
+/* ===== GLOBAL ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter;
+  background:#0b0b0f;
+  color:white;
+  overflow-x:hidden;
 }
 
-/* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: radial-gradient(circle at top, #1a1a2e, #0b0b0f 60%);
+/* ===== PARTICLE BACKGROUND ===== */
+#particles{
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
 }
 
-.hero h1 {
-  font-size: 80px;
-  margin: 0;
-  letter-spacing: 5px;
+/* ===== NAVBAR ===== */
+nav{
+  position:fixed;
+  width:100%;
+  padding:20px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(10px);
+  background:rgba(10,10,15,.5);
 }
 
-.hero p {
-  color: #aaa;
-  font-size: 18px;
-  margin-top: 10px;
+nav h1{
+  font-size:22px;
+  letter-spacing:2px;
 }
 
-/* BUTTON */
-.btn {
-  margin-top: 25px;
-  padding: 14px 22px;
-  background: #5865F2;
-  color: white;
-  text-decoration: none;
-  border-radius: 10px;
-  transition: 0.3s;
+.nav-links a{
+  margin-left:25px;
+  text-decoration:none;
+  color:#aaa;
+  transition:.3s;
+}
+.nav-links a:hover{
+  color:white;
 }
 
-.btn:hover {
-  transform: scale(1.05);
-  background: #7b84ff;
+/* ===== HERO ===== */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-/* SECTION */
-.section {
-  padding: 80px 20px;
-  text-align: center;
+.hero h2{
+  font-size:80px;
+  letter-spacing:6px;
+  animation:fadeUp 1s ease;
 }
 
-/* GRID */
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 40px;
+.hero p{
+  color:#aaa;
+  margin-top:10px;
+  animation:fadeUp 1.5s ease;
 }
 
-/* CARDS */
-.card {
-  background: #141420;
-  border: 1px solid #222;
-  padding: 20px;
-  border-radius: 14px;
-  width: 260px;
-  transition: 0.3s ease;
+/* ===== BUTTONS ===== */
+.btn-group{
+  margin-top:30px;
+  display:flex;
+  gap:20px;
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  border-color: #5865F2;
-  box-shadow: 0 10px 25px rgba(88,101,242,0.25);
+.btn{
+  padding:14px 26px;
+  border-radius:12px;
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  background:#5865F2;
+  transition:.3s;
 }
 
-/* ICONS */
-.icon {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 12px;
+.btn:hover{
+  transform:translateY(-5px) scale(1.05);
+  box-shadow:0 10px 30px rgba(88,101,242,.4);
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 50px;
-  color: #555;
+.btn-outline{
+  background:transparent;
+  border:1px solid #5865F2;
 }
-   
-.scroll-hint {
-  margin-top: 40px;
-  color: #666;
-  font-size: 14px;
-  letter-spacing: 2px;
 
-  /* CENTRADO REAL */
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  animation: bounce 1.5s infinite;
+/* ===== SERVICES ===== */
+.section{
+  padding:120px 40px;
+  text-align:center;
 }
-   
+
+.grid{
+  margin-top:50px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:25px;
+}
+
+.card{
+  width:260px;
+  padding:25px;
+  border-radius:14px;
+  background:#141420;
+  border:1px solid #222;
+  transition:.4s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  border-color:#5865F2;
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
+}
+
+/* 24/7 badge */
+.badge{
+  margin-top:10px;
+  color:#5865F2;
+  font-size:13px;
+}
+
+/* ===== SCROLL INDICATOR ===== */
+.scroll{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  opacity:.7;
+  animation:bounce 1.5s infinite;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes bounce{
+  0%,100%{transform:translate(-50%,0)}
+  50%{transform:translate(-50%,8px)}
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+footer{
+  padding:40px;
+  text-align:center;
+  color:#555;
+}
+
 </style>
-
 </head>
 
 <body>
 
+<canvas id="particles"></canvas>
+
+<!-- NAVBAR -->
+<nav>
+  <h1>POV STUDIOS</h1>
+  <div class="nav-links">
+    <a href="team.html">Team</a>
+    <a href="work.html">Our Work</a>
+    <a href="products.html">Products</a>
+  </div>
+</nav>
+
 <!-- HERO -->
 <section class="hero">
-  <h1>POV STUDIOS</h1>
+  <h2>POV STUDIOS</h2>
   <p>Roblox Development Studio</p>
 
-  <a class="btn" href="https://discord.gg/">Join Discord</a>
-</section>
-   
-<div class="scroll-hint">
-  Scroll Down ↓
-</div>
-   
-<!-- CARDS SECTION -->
-<section class="section">
-
-  <h2>What we do</h2>
-
-  <div class="grid">
-
-    <!-- GAME DEV -->
-    <div class="card">
-      <div class="icon">
-        <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
-          <path d="M3 7l9-4 9 4-9 4-9-4z" stroke="#5865F2" stroke-width="2"/>
-          <path d="M3 7v10l9 4 9-4V7" stroke="#5865F2" stroke-width="2"/>
-        </svg>
-      </div>
-      <h3>Game Development</h3>
-      <p>We build full Roblox experiences from scratch.</p>
-    </div>
-
-    <!-- SYSTEMS -->
-    <div class="card">
-      <div class="icon">
-        <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L5.5 20l2-7L2 9h7l3-7z" stroke="#5865F2" stroke-width="2"/>
-        </svg>
-      </div>
-      <h3>Systems</h3>
-      <p>Jobs, gangs, economy and RP systems.</p>
-    </div>
-
-    <!-- UI DESIGN -->
-    <div class="card">
-      <div class="icon">
-        <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
-          <rect x="3" y="3" width="18" height="14" rx="2" stroke="#5865F2" stroke-width="2"/>
-          <path d="M8 21h8" stroke="#5865F2" stroke-width="2"/>
-          <path d="M12 17v4" stroke="#5865F2" stroke-width="2"/>
-        </svg>
-      </div>
-      <h3>UI Design</h3>
-      <p>Clean interfaces and modern UI systems.</p>
-    </div>
-
-    <!-- SUPPORT -->
-    <div class="card">
-      <div class="icon">
-        <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
-          <path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" stroke="#5865F2" stroke-width="2"/>
-        </svg>
-      </div>
-      <h3>Support Team</h3>
-      <p>We help users and manage community issues.</p>
-    </div>
-
+  <div class="btn-group">
+    <a class="btn" href="work.html">Our Work</a>
+    <a class="btn btn-outline" href="team.html">Meet the Team</a>
   </div>
 
+  <div class="scroll">Scroll ↓</div>
 </section>
 
-<footer>
-POV STUDIOS © 2026
-</footer>
+<!-- SERVICES -->
+<section class="section">
+  <h2>What We Do</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Game Development</h3>
+      <p>Full Roblox experiences built from scratch.</p>
+    </div>
+
+    <div class="card">
+      <h3>Systems</h3>
+      <p>Economy, jobs, gangs and advanced scripts.</p>
+    </div>
+
+    <div class="card">
+      <h3>UI Design</h3>
+      <p>Modern and clean interfaces.</p>
+    </div>
+
+    <div class="card">
+      <h3>Support Team</h3>
+      <p>Helping users and managing communities.</p>
+      <div class="badge">Available 24/7</div>
+    </div>
+  </div>
+</section>
+
+<footer>POV STUDIOS © 2026</footer>
+
+<script>
+// ===== PARTICLE BACKGROUND =====
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+dx:(Math.random()-.5)*0.5,
+dy:(Math.random()-.5)*0.5
+})
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="#5865F2";
+ctx.fill();
+p.x+=p.dx;
+p.y+=p.dy;
+})
+requestAnimationFrame(animate);
+}
+animate();
+</script>
 
 </body>
 </html>
