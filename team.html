@@ -4,113 +4,223 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>POV STUDIOS — Team</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* ===== BASE ===== */
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter;background:#0b0b0f;color:white;overflow-x:hidden}
+body{
+  font-family:Inter;
+  background:#0b0b0f;
+  color:white;
+  overflow-x:hidden;
+}
+
 html{scroll-behavior:smooth}
 
-/* NAVBAR */
+/* ===== NAV ===== */
 nav{
-position:fixed;width:100%;padding:20px 60px;
-display:flex;justify-content:space-between;align-items:center;
-backdrop-filter:blur(10px);background:rgba(10,10,15,.5);
+  position:fixed;
+  width:100%;
+  padding:20px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(12px);
+  background:rgba(10,10,15,.6);
+  z-index:10;
 }
-nav a{color:#aaa;text-decoration:none;margin-left:25px}
+
+nav a{
+  color:#aaa;
+  text-decoration:none;
+  margin-left:25px;
+  transition:.3s;
+}
 nav a:hover{color:white}
 
-/* PAGE */
-.section{padding:120px 40px;text-align:center}
-.grid{display:flex;flex-wrap:wrap;justify-content:center;gap:25px;margin-top:40px}
+/* ===== SECTIONS ===== */
+.section{
+  padding:140px 40px;
+  text-align:center;
+}
 
-/* CARDS */
+/* CATEGORY TITLE */
+.section h1{
+  font-size:28px;
+  margin-bottom:30px;
+  letter-spacing:2px;
+  opacity:.9;
+}
+
+/* ===== GRID ===== */
+.grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:25px;
+}
+
+/* ===== CARD PREMIUM ===== */
 .card{
-width:250px;padding:25px;border-radius:14px;
-background:#141420;border:1px solid #222;
-transition:.4s;text-align:center;
+  width:260px;
+  padding:30px;
+  border-radius:16px;
+
+  background:rgba(20,20,30,.7);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(10px);
+
+  text-align:center;
+  transition:.4s;
+
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeIn .6s forwards;
 }
+
 .card:hover{
-transform:translateY(-10px);
-border-color:#5865F2;
-box-shadow:0 20px 40px rgba(0,0,0,.6);
+  transform:translateY(-10px) scale(1.02);
 }
-.icon{width:60px;margin-bottom:15px;filter:invert(1)}
-.role{color:#5865F2;font-size:14px;margin-top:5px}
+
+/* ===== ICONS ===== */
+.icon{
+  width:65px;
+  margin-bottom:15px;
+  filter:drop-shadow(0 0 10px rgba(88,101,242,.4));
+}
+
+/* SPECIAL GLOW FOR CEO */
+.ceo .icon{
+  filter:drop-shadow(0 0 18px gold);
+}
+
+/* ROLE TEXT */
+.role{
+  color:#5865F2;
+  font-size:13px;
+  margin-top:5px;
+}
+
+/* NAME SLOT */
+.name-slot{
+  margin-top:15px;
+  padding:10px;
+  border-radius:10px;
+  background:#0f0f18;
+  border:1px solid rgba(255,255,255,.06);
+  color:#aaa;
+  font-size:14px;
+}
+
+/* ===== CATEGORY COLORS ===== */
+.leadership h1{color:gold}
+.development h1{color:#5865F2}
+.business h1{color:#8b5cf6}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.card:nth-child(1){animation-delay:.1s}
+.card:nth-child(2){animation-delay:.2s}
+.card:nth-child(3){animation-delay:.3s}
+.card:nth-child(4){animation-delay:.4s}
+.card:nth-child(5){animation-delay:.5s}
+
 </style>
 </head>
 
 <body>
 
 <nav>
-<h2>POV STUDIOS</h2>
-<div>
-<a href="index.html">Home</a>
-<a href="work.html">Our Work</a>
-</div>
+  <h2>POV STUDIOS</h2>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="work.html">Our Work</a>
+  </div>
 </nav>
 
-<!-- LEADERSHIP -->
-<section class="section">
+<!-- ===== LEADERSHIP ===== -->
+<section class="section leadership">
+
 <h1>Leadership</h1>
+
 <div class="grid">
 
-<div class="card">
-<img class="icon" src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
-<h3>Founder / CEO</h3>
-<p class="role">Studio Owner</p>
+<div class="card ceo">
+  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
+  <h3>Founder / CEO</h3>
+  <p class="role">Studio Owner</p>
+  <div class="name-slot">Vacant</div>
 </div>
 
 <div class="card">
-<img class="icon" src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png">
-<h3>Studio Manager</h3>
-<p class="role">Operations</p>
+  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png">
+  <h3>Studio Manager</h3>
+  <p class="role">Operations</p>
+  <div class="name-slot">Vacant</div>
 </div>
 
 </div>
 </section>
 
-<!-- DEVELOPMENT -->
-<section class="section">
+<!-- ===== DEVELOPMENT ===== -->
+<section class="section development">
+
 <h1>Development</h1>
+
 <div class="grid">
 
 <div class="card">
-<img class="icon" src="https://cdn-icons-png.flaticon.com/512/1006/1006363.png">
-<h3>Lead Developer</h3>
-<p class="role">Programming</p>
+  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1006/1006363.png">
+  <h3>Lead Developer</h3>
+  <p class="role">Programming</p>
+  <div class="name-slot">Vacant</div>
 </div>
 
 <div class="card">
-<img class="icon" src="https://cdn-icons-png.flaticon.com/512/906/906324.png">
-<h3>Scripter Lead</h3>
-<p class="role">Systems</p>
+  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/906/906324.png">
+  <h3>Scripter Lead</h3>
+  <p class="role">Systems</p>
+  <div class="name-slot">Vacant</div>
 </div>
 
 <div class="card">
-<img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png">
-<h3>UI/UX Designer</h3>
-<p class="role">Interface Design</p>
+  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png">
+  <h3>UI/UX Designer</h3>
+  <p class="role">Interface Design</p>
+  <div class="name-slot">Vacant</div>
 </div>
 
 </div>
 </section>
 
-<!-- BUSINESS -->
-<section class="section">
+<!-- ===== BUSINESS ===== -->
+<section class="section business">
+
 <h1>Business & Growth</h1>
+
 <div class="grid">
 
 <div class="card">
-<img class="icon" src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png">
-<h3>Community Manager</h3>
-<p class="role">Community</p>
+  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png">
+  <h3>Community Manager</h3>
+  <p class="role">Community</p>
+  <div class="name-slot">Vacant</div>
 </div>
 
 <div class="card">
-<img class="icon" src="https://cdn-icons-png.flaticon.com/512/929/929564.png">
-<h3>Marketing Manager</h3>
-<p class="role">Growth</p>
+  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/929/929564.png">
+  <h3>Marketing Manager</h3>
+  <p class="role">Growth</p>
+  <div class="name-slot">Vacant</div>
 </div>
 
 </div>
