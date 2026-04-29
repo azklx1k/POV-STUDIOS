@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>POV STUDIOS • Products</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:#0b0f1a;color:white}
+
+/* NAV */
+nav{
+ position:fixed;width:100%;padding:20px 80px;
+ display:flex;justify-content:space-between;
+ background:rgba(0,0,0,.4);backdrop-filter:blur(10px);z-index:999;
+}
+nav a{color:white;text-decoration:none;margin-left:40px;font-weight:600}
+nav a:hover{color:#00e0ff}
+
+.header{padding-top:140px;text-align:center}
+.header h1{
+ font-size:50px;
+ background:linear-gradient(90deg,#00e0ff,#9b5cff);
+ -webkit-background-clip:text;color:transparent;
+}
+
+/* CATEGORY TITLE */
+.category-title{
+ margin:70px 0 30px;
+ text-align:center;
+ font-size:32px;
+ color:#00e0ff;
+}
+
+/* GRID */
+.grid{
+ padding:0 80px 40px;
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+ gap:30px;
+}
+
+.card{
+ background:#12182b;border-radius:18px;padding:25px;
+ position:relative;transition:.4s;
+}
+.card:hover{
+ transform:translateY(-10px);
+ box-shadow:0 0 25px rgba(0,224,255,.25);
+}
+
+.price{
+ font-size:28px;
+ color:#00e0ff;
+ margin:10px 0;
+}
+
+.features{
+ color:#aaa;
+ font-size:14px;
+ margin-bottom:20px;
+}
+
+.buy{
+ display:inline-block;
+ padding:12px 25px;
+ border-radius:30px;
+ background:linear-gradient(90deg,#5865F2,#00e0ff);
+ text-decoration:none;color:white;font-weight:600;
+}
+
+/* VIP SECTION */
+.vip{
+ margin-top:80px;
+ padding:80px;
+ background:linear-gradient(90deg,#12182b,#1a2238);
+}
+
+.vip-title{text-align:center;font-size:40px;margin-bottom:40px}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>POV STUDIOS</h2>
+<div>
+<a href="index.html">Home</a>
+<a href="work.html">Work</a>
+<a href="team.html">Team</a>
+</div>
+</nav>
+
+<div class="header">
+<h1>Products & Services</h1>
+</div>
+
+<!-- SCRIPTS -->
+<h2 class="category-title">Scripts</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Basic Script</h3>
+<div class="price">$25+</div>
+<div class="features">Custom Roblox script<br>Optimized<br>Bug fixes</div>
+<a class="buy" href="https://discord.gg/23mQPd7FG">Order</a>
+</div>
+
+<div class="card">
+<h3>Advanced System</h3>
+<div class="price">$80+</div>
+<div class="features">Full game system<br>DataStore ready<br>Optimized</div>
+<a class="buy" href="https://discord.gg/23mQPd7FG">Order</a>
+</div>
+
+</div>
+
+<!-- BUILDS -->
+<h2 class="category-title">Builds</h2>
+<div class="grid">
+<div class="card">
+<h3>Map Build</h3>
+<div class="price">$70+</div>
+<div class="features">Custom map<br>Optimized<br>High quality</div>
+<a class="buy" href="https://discord.gg/23mQPd7FG">Order</a>
+</div>
+</div>
+
+<!-- MAPS -->
+<h2 class="category-title">Maps</h2>
+<div class="grid">
+<div class="card">
+<h3>City Map</h3>
+<div class="price">$120+</div>
+<div class="features">Large map<br>Optimized<br>Detailed</div>
+<a class="buy" href="https://discord.gg/23mQPd7FG">Order</a>
+</div>
+</div>
+
+<!-- FULL GAMES -->
+<h2 class="category-title">Full Games</h2>
+<div class="grid">
+<div class="card">
+<h3>Complete Roblox Game</h3>
+<div class="price">$400+</div>
+<div class="features">Full development<br>UI + Systems<br>Support</div>
+<a class="buy" href="https://discord.gg/23mQPd7FG">Order</a>
+</div>
+</div>
+
+<!-- VIP MEMBERSHIPS -->
+<section class="vip">
+<div class="vip-title">VIP Memberships</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>VIP Bronze</h3>
+<div class="price">$5/mo</div>
+<div class="features">Priority support<br>Discounts<br>VIP Discord role</div>
+<a class="buy" href="https://discord.gg/23mQPd7FG">Join</a>
+</div>
+
+<div class="card">
+<h3>VIP Gold</h3>
+<div class="price">$15/mo</div>
+<div class="features">Faster delivery<br>Exclusive assets<br>VIP role</div>
+<a class="buy" href="https://discord.gg/23mQPd7FG">Join</a>
+</div>
+
+<div class="card">
+<h3>VIP Platinum</h3>
+<div class="price">$30/mo</div>
+<div class="features">Highest priority<br>Monthly assets<br>Private support</div>
+<a class="buy" href="https://discord.gg/23mQPd7FG">Join</a>
+</div>
+
+</div>
+</section>
+
+</body>
+</html>
