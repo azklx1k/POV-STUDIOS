@@ -2,112 +2,285 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>POV STUDIOS • Our Work</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
-
+<title>POV STUDIOS — Our Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+:root {
+  --black: #06060a;
+  --card: #10101a;
+  --border: rgba(138,43,226,0.18);
+  --purple: #8a2be2;
+  --neon: #bf5fff;
+  --cyan: #00f0ff;
+  --white: #f0eeff;
+  --muted: #7a7a9a;
+}
 
-body{background:#0b0f1a;color:white}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");z-index:1;pointer-events:none;opacity:0.4;}
 
 /* NAV */
-nav{
-  position:fixed;width:100%;padding:20px 80px;
-  display:flex;justify-content:space-between;
-  background:rgba(0,0,0,.4);backdrop-filter:blur(10px);z-index:999;
-}
-nav a{color:white;text-decoration:none;margin-left:40px;font-weight:600;transition:.3s}
-nav a:hover{color:#00e0ff}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,10,0.6);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--neon),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links a{font-size:13px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;color:var(--muted);transition:color .3s;}
+.nav-links a:hover{color:var(--white);}
 
-/* HEADER */
-.header{padding-top:140px;text-align:center}
-.header h1{
-  font-size:50px;
-  background:linear-gradient(90deg,#00e0ff,#9b5cff);
-  -webkit-background-clip:text;color:transparent;
-}
-.header p{color:#aaa;margin-top:10px}
+/* PAGE HEADER */
+.page-header{position:relative;z-index:2;padding:160px 60px 80px;text-align:center;}
+.page-eyebrow{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--neon);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.page-eyebrow::before,.page-eyebrow::after{content:'';width:30px;height:1px;background:var(--neon);opacity:0.5;}
+.page-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(44px,7vw,80px);line-height:1;}
+.page-title span{background:linear-gradient(90deg,var(--neon),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.page-sub{color:var(--muted);margin-top:16px;font-size:16px;}
 
-/* GRID */
-.projects{
-  padding:80px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
+/* FILTER TABS */
+.filter-bar{position:relative;z-index:2;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:50px;padding:0 60px;}
+.filter-btn{padding:9px 22px;border-radius:40px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:.3s;}
+.filter-btn:hover,.filter-btn.active{border-color:var(--neon);color:var(--neon);background:rgba(191,95,255,0.08);}
 
-.project{
-  background:#12182b;border-radius:18px;
-  overflow:hidden;position:relative;transition:.4s;cursor:pointer;
-}
-.project img{
-  width:100%;height:190px;object-fit:cover;
-  opacity:.85;transition:.4s;
-}
-.project:hover img{transform:scale(1.1);opacity:1}
+/* PROJECTS GRID */
+.projects{position:relative;z-index:2;padding:0 60px 80px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;}
 
-.project-info{padding:20px}
-.project p{color:#aaa;font-size:14px}
+.project{border-radius:20px;overflow:hidden;border:1px solid var(--border);background:var(--card);position:relative;transition:transform .4s,border-color .4s,box-shadow .4s;cursor:pointer;}
+.project:hover{transform:translateY(-8px);border-color:rgba(191,95,255,0.45);box-shadow:0 24px 60px rgba(138,43,226,0.22);}
 
-/* glow */
-.project::after{
-  content:"";position:absolute;inset:0;border-radius:18px;
-  box-shadow:0 0 25px rgba(0,224,255,.25);
-  opacity:0;transition:.4s;
-}
-.project:hover::after{opacity:1}
+.project-img{position:relative;height:200px;overflow:hidden;background:#0c0c18;}
+.project-img img{width:100%;height:100%;object-fit:cover;opacity:0.75;transition:transform .5s,opacity .4s;}
+.project:hover .project-img img{transform:scale(1.08);opacity:0.95;}
 
-/* DISCORD CTA */
-.discord{text-align:center;padding:80px 20px 120px}
-.discord a{
-  padding:18px 40px;border-radius:40px;text-decoration:none;
-  color:white;background:linear-gradient(90deg,#5865F2,#00e0ff);
-  font-weight:600;transition:.4s;
-}
-.discord a:hover{transform:scale(1.1);box-shadow:0 0 25px #5865F2}
+.project-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(6,6,10,0.9) 100%);}
+
+.project-cat{position:absolute;top:14px;right:14px;padding:5px 12px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;background:rgba(191,95,255,0.2);color:var(--neon);border:1px solid rgba(191,95,255,0.3);backdrop-filter:blur(8px);}
+
+.project-info{padding:22px 24px;}
+.project-info h3{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:6px;}
+.project-info p{font-size:13px;color:var(--muted);line-height:1.6;}
+
+.project-meta{display:flex;gap:12px;margin-top:14px;align-items:center;}
+.meta-tag{font-size:11px;color:var(--muted);padding:3px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);}
+
+/* FEATURED PROJECT (spans 2 cols) */
+.project.featured{grid-column:span 2;}
+.project.featured .project-img{height:280px;}
+
+/* CTA */
+.discord-cta{position:relative;z-index:2;margin:0 60px 80px;text-align:center;border-radius:24px;padding:70px 40px;border:1px solid rgba(191,95,255,0.25);background:linear-gradient(135deg,rgba(138,43,226,0.15) 0%,rgba(0,240,255,0.06) 100%);overflow:hidden;}
+.discord-cta::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(191,95,255,0.12) 0%,transparent 70%);pointer-events:none;}
+.discord-cta h2{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;margin-bottom:10px;}
+.discord-cta p{color:var(--muted);margin-bottom:28px;font-size:15px;}
+.btn-primary{display:inline-block;padding:15px 34px;border-radius:50px;text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;background:linear-gradient(135deg,var(--purple),var(--neon));color:#fff;box-shadow:0 0 30px rgba(138,43,226,0.4);transition:transform .3s,box-shadow .3s;}
+.btn-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 50px rgba(191,95,255,0.55);}
+
+/* FOOTER */
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:36px 60px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;}
+.logo-f{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:3px;background:linear-gradient(90deg,var(--neon),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+@media(max-width:900px){nav,footer{padding:18px 24px;}.projects,.filter-bar,.discord-cta{padding-left:24px;padding-right:24px;margin-left:0;margin-right:0;}.project.featured{grid-column:span 1;}.page-header{padding:140px 24px 60px;}}
 </style>
 </head>
-
 <body>
 
+<canvas id="bg-canvas"></canvas>
+
 <nav>
-  <h2>POV STUDIOS</h2>
-  <div>
+  <a href="index.html" class="logo">POV Studios</a>
+  <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="team.html">Team</a>
+    <a href="products.html">Products</a>
   </div>
 </nav>
 
-<div class="header">
-  <h1>Our Work</h1>
-  <p>Some of our latest creations and commissions</p>
+<div class="page-header">
+  <div class="page-eyebrow">Portfolio</div>
+  <h1 class="page-title">Our <span>Work</span></h1>
+  <p class="page-sub">A showcase of our latest commissions and original projects.</p>
 </div>
 
-<section class="projects">
-
-<!-- 13 PROJECT CARDS -->
-<div class="project"><img src="https://images.unsplash.com/photo-1605902711622-cfb43c44367f"><div class="project-info"><h3>Project</h3><p>Roblox Game Development</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f"><div class="project-info"><h3>Project</h3><p>UI/UX Design</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420"><div class="project-info"><h3>Project</h3><p>Game Systems</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a"><div class="project-info"><h3>Project</h3><p>Roblox Maps</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e"><div class="project-info"><h3>Project</h3><p>3D Assets</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769"><div class="project-info"><h3>Project</h3><p>Game Optimization</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e"><div class="project-info"><h3>Project</h3><p>FiveM Scripts</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1581090700227-1e8b41dbe7f9"><div class="project-info"><h3>Project</h3><p>Custom Systems</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9"><div class="project-info"><h3>Project</h3><p>Animations</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f"><div class="project-info"><h3>Project</h3><p>Game Branding</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"><div class="project-info"><h3>Project</h3><p>Web Development</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1522199710521-72d69614c702"><div class="project-info"><h3>Project</h3><p>Community Systems</p></div></div>
-<div class="project"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f"><div class="project-info"><h3>Your Project</h3><p>Add your newest work here</p></div></div>
-
-</section>
-
-<div class="discord">
-  <h2>More projects on Discord</h2><br>
-  <a href="https://discord.gg/23mQPd7FG">Join our Discord</a>
+<div class="filter-bar">
+  <button class="filter-btn active">All</button>
+  <button class="filter-btn">Scripts</button>
+  <button class="filter-btn">Maps</button>
+  <button class="filter-btn">UI Design</button>
+  <button class="filter-btn">Full Games</button>
+  <button class="filter-btn">Systems</button>
 </div>
 
+<div class="projects">
+
+  <div class="project featured">
+    <div class="project-img">
+      <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=900&q=80" alt="Featured Project">
+      <div class="project-overlay"></div>
+      <div class="project-cat">Featured</div>
+    </div>
+    <div class="project-info">
+      <h3>Full Roblox City RP Game</h3>
+      <p>Complete game from scratch — city map, economy system, jobs, gangs, UI, and more. Our flagship commission.</p>
+      <div class="project-meta">
+        <span class="meta-tag">Full Game</span>
+        <span class="meta-tag">Systems</span>
+        <span class="meta-tag">UI Design</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-img">
+      <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80" alt="UI Design">
+      <div class="project-overlay"></div>
+      <div class="project-cat">UI Design</div>
+    </div>
+    <div class="project-info">
+      <h3>Custom HUD System</h3>
+      <p>Modern player interface with animated elements and smooth transitions.</p>
+      <div class="project-meta"><span class="meta-tag">UI/UX</span><span class="meta-tag">Scripting</span></div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-img">
+      <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80" alt="Game Systems">
+      <div class="project-overlay"></div>
+      <div class="project-cat">Systems</div>
+    </div>
+    <div class="project-info">
+      <h3>Advanced Economy System</h3>
+      <p>Jobs, paycheck, banking, shops, and DataStore — all in one modular package.</p>
+      <div class="project-meta"><span class="meta-tag">Systems</span><span class="meta-tag">DataStore</span></div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-img">
+      <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80" alt="Roblox Map">
+      <div class="project-overlay"></div>
+      <div class="project-cat">Maps</div>
+    </div>
+    <div class="project-info">
+      <h3>Downtown City Map</h3>
+      <p>Large-scale city build — 300+ buildings, roads, interiors, optimized for performance.</p>
+      <div class="project-meta"><span class="meta-tag">Map Build</span><span class="meta-tag">Optimized</span></div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-img">
+      <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=600&q=80" alt="Optimization">
+      <div class="project-overlay"></div>
+      <div class="project-cat">Scripts</div>
+    </div>
+    <div class="project-info">
+      <h3>Anti-Exploit & Anti-Cheat</h3>
+      <p>Custom server-side security system to protect your game from exploiters.</p>
+      <div class="project-meta"><span class="meta-tag">Security</span><span class="meta-tag">Server</span></div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-img">
+      <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?w=600&q=80" alt="Gang System">
+      <div class="project-overlay"></div>
+      <div class="project-cat">Systems</div>
+    </div>
+    <div class="project-info">
+      <h3>Gang & Turf System</h3>
+      <p>Full gang management — territories, wars, ranks, upgrades, and persistence.</p>
+      <div class="project-meta"><span class="meta-tag">Systems</span><span class="meta-tag">RP</span></div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-img">
+      <img src="https://images.unsplash.com/photo-1581090700227-1e8b41dbe7f9?w=600&q=80" alt="Custom Systems">
+      <div class="project-overlay"></div>
+      <div class="project-cat">Scripts</div>
+    </div>
+    <div class="project-info">
+      <h3>Vehicle Ownership System</h3>
+      <p>Buy, store, and spawn vehicles with full persistence and customization support.</p>
+      <div class="project-meta"><span class="meta-tag">Vehicles</span><span class="meta-tag">DataStore</span></div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-img">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80" alt="Web Development">
+      <div class="project-overlay"></div>
+      <div class="project-cat">Other</div>
+    </div>
+    <div class="project-info">
+      <h3>Studio Website</h3>
+      <p>This very site — designed and developed in-house for POV Studios.</p>
+      <div class="project-meta"><span class="meta-tag">Web</span><span class="meta-tag">Design</span></div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-img">
+      <img src="https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?w=600&q=80" alt="Animations">
+      <div class="project-overlay"></div>
+      <div class="project-cat">UI Design</div>
+    </div>
+    <div class="project-info">
+      <h3>Animated Inventory UI</h3>
+      <p>Smooth drag-and-drop inventory with grid layout, tooltips, and item rarity colors.</p>
+      <div class="project-meta"><span class="meta-tag">UI/UX</span><span class="meta-tag">Animation</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="discord-cta">
+  <h2>Want to see more?</h2>
+  <p>We share new projects daily in our Discord. Come check out what's in the works.</p>
+  <a href="https://discord.gg/23mQPd7FG" class="btn-primary">Join Discord →</a>
+</div>
+
+<footer>
+  <span class="logo-f">POV Studios</span>
+  <span>© 2026 POV Studios. All rights reserved.</span>
+  <a href="https://discord.gg/23mQPd7FG" style="color:var(--neon);text-decoration:none;">Discord ↗</a>
+</footer>
+
+<script>
+// FILTER
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// BG
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resize(); window.addEventListener('resize',resize);
+let mouse={x:canvas.width/2,y:canvas.height/2};
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+const particles=Array.from({length:70},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+.3,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3,alpha:Math.random()*.5+.2}));
+let t=0;
+function drawGrid(){const s=60;ctx.strokeStyle='rgba(138,43,226,0.05)';ctx.lineWidth=1;for(let x=0;x<canvas.width;x+=s){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,canvas.height);ctx.stroke();}for(let y=0;y<canvas.height;y+=s){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(canvas.width,y);ctx.stroke();}}
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height); drawGrid();
+  const g=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,360);
+  g.addColorStop(0,'rgba(138,43,226,0.1)');g.addColorStop(1,'transparent');
+  ctx.fillStyle=g;ctx.fillRect(0,0,canvas.width,canvas.height);
+  const ox=canvas.width*.15+Math.sin(t*.0025)*80,oy=canvas.height*.8+Math.cos(t*.002)*50;
+  const g2=ctx.createRadialGradient(ox,oy,0,ox,oy,220);
+  g2.addColorStop(0,'rgba(0,240,255,0.07)');g2.addColorStop(1,'transparent');
+  ctx.fillStyle=g2;ctx.fillRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(191,95,255,${p.alpha})`;ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;});
+  t++;requestAnimationFrame(animate);
+}
+animate();
+</script>
 </body>
 </html>
