@@ -4,227 +4,348 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>POV STUDIOS — Team</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-
-/* ===== BASE ===== */
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:Inter;
-  background:#0b0b0f;
-  color:white;
-  overflow-x:hidden;
+:root {
+  --black: #06060a;
+  --deep: #0d0d14;
+  --card: #10101a;
+  --border: rgba(138,43,226,0.18);
+  --purple: #8a2be2;
+  --neon: #bf5fff;
+  --cyan: #00f0ff;
+  --gold: #ffd166;
+  --white: #f0eeff;
+  --muted: #7a7a9a;
 }
 
-html{scroll-behavior:smooth}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:var(--black); color:var(--white); overflow-x:hidden; }
 
-/* ===== NAV ===== */
-nav{
-  position:fixed;
-  width:100%;
-  padding:20px 60px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  backdrop-filter:blur(12px);
-  background:rgba(10,10,15,.6);
-  z-index:10;
+#bg-canvas { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  z-index:1; pointer-events:none; opacity:0.4;
 }
 
-nav a{
-  color:#aaa;
-  text-decoration:none;
-  margin-left:25px;
-  transition:.3s;
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding:22px 60px;
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(6,6,10,0.6);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
 }
-nav a:hover{color:white}
+.logo { font-family:'Syne',sans-serif; font-weight:800; font-size:18px; letter-spacing:4px; text-transform:uppercase; background:linear-gradient(90deg,var(--neon),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-decoration:none; }
+.nav-links { display:flex; gap:36px; align-items:center; }
+.nav-links a { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; color:var(--muted); transition:color .3s; }
+.nav-links a:hover { color:var(--white); }
 
-/* ===== SECTIONS ===== */
-.section{
-  padding:140px 40px;
+/* PAGE HEADER */
+.page-header {
+  position:relative; z-index:2;
+  padding:160px 60px 80px;
   text-align:center;
 }
+.page-eyebrow {
+  font-family:'Syne',sans-serif; font-size:11px; letter-spacing:5px; text-transform:uppercase; color:var(--neon);
+  margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:12px;
+}
+.page-eyebrow::before, .page-eyebrow::after { content:''; width:30px; height:1px; background:var(--neon); opacity:0.5; }
+.page-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(44px,7vw,80px); line-height:1; }
+.page-title span { background:linear-gradient(90deg,var(--neon),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.page-sub { color:var(--muted); margin-top:16px; font-size:16px; }
 
-/* CATEGORY TITLE */
-.section h1{
+/* CATEGORY */
+.category { position:relative; z-index:2; padding:60px 60px 0; }
+.cat-label {
+  display:inline-flex; align-items:center; gap:12px;
+  font-family:'Syne',sans-serif; font-size:12px; font-weight:700; letter-spacing:4px; text-transform:uppercase;
+  margin-bottom:36px;
+  padding:10px 20px; border-radius:40px;
+  border:1px solid;
+}
+.cat-label.gold { color:var(--gold); border-color:rgba(255,209,102,0.3); background:rgba(255,209,102,0.06); }
+.cat-label.purple { color:var(--neon); border-color:rgba(191,95,255,0.3); background:rgba(191,95,255,0.06); }
+.cat-label.cyan { color:var(--cyan); border-color:rgba(0,240,255,0.3); background:rgba(0,240,255,0.06); }
+
+/* TEAM GRID */
+.team-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:20px; }
+
+/* MEMBER CARD */
+.member-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:36px 28px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  transition:transform .4s, border-color .4s, box-shadow .4s;
+  opacity:0; transform:translateY(20px);
+  animation:fadeUp .6s forwards;
+}
+.member-card:hover { transform:translateY(-8px); border-color:rgba(191,95,255,0.45); box-shadow:0 20px 50px rgba(138,43,226,0.2); }
+
+/* CEO special */
+.member-card.ceo { border-color:rgba(255,209,102,0.25); }
+.member-card.ceo:hover { border-color:rgba(255,209,102,0.5); box-shadow:0 20px 50px rgba(255,209,102,0.15); }
+.member-card.ceo::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.member-card::after {
+  content:'';
+  position:absolute; top:-40px; left:50%; transform:translateX(-50%);
+  width:120px; height:120px; border-radius:50%;
+  background:radial-gradient(circle, rgba(191,95,255,0.1) 0%, transparent 70%);
+  transition:transform .5s;
+}
+.member-card.ceo::after { background:radial-gradient(circle, rgba(255,209,102,0.1) 0%, transparent 70%); }
+.member-card:hover::after { transform:translateX(-50%) scale(2.5); }
+
+/* AVATAR */
+.avatar {
+  width:72px; height:72px; border-radius:50%;
+  margin:0 auto 20px;
+  display:flex; align-items:center; justify-content:center;
   font-size:28px;
-  margin-bottom:30px;
-  letter-spacing:2px;
-  opacity:.9;
+  border:2px solid rgba(191,95,255,0.3);
+  background:rgba(191,95,255,0.08);
+  position:relative; z-index:1;
+}
+.ceo .avatar { border-color:rgba(255,209,102,0.4); background:rgba(255,209,102,0.08); }
+
+.member-role {
+  font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase;
+  color:var(--neon); margin-bottom:8px;
+}
+.ceo .member-role { color:var(--gold); }
+
+.member-name {
+  font-family:'Syne',sans-serif; font-weight:700; font-size:20px; margin-bottom:6px;
 }
 
-/* ===== GRID ===== */
-.grid{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:25px;
+.member-dept {
+  font-size:12px; color:var(--muted);
 }
 
-/* ===== CARD PREMIUM ===== */
-.card{
-  width:260px;
-  padding:30px;
-  border-radius:16px;
+.member-tag {
+  display:inline-block; margin-top:16px;
+  padding:5px 14px; border-radius:20px; font-size:11px; font-weight:600;
+  background:rgba(191,95,255,0.1); color:var(--neon); border:1px solid rgba(191,95,255,0.2);
+}
+.ceo .member-tag { background:rgba(255,209,102,0.1); color:var(--gold); border-color:rgba(255,209,102,0.2); }
 
-  background:rgba(20,20,30,.7);
-  border:1px solid rgba(255,255,255,.08);
-  backdrop-filter:blur(10px);
+.vacant .member-name { color:var(--muted); font-style:italic; font-size:16px; }
+.vacant { opacity:0.6; }
 
+/* DIVIDER */
+.divider { height:1px; background:var(--border); margin:60px 60px 0; position:relative; z-index:2; }
+
+/* FOOTER */
+footer {
+  position:relative; z-index:2;
+  border-top:1px solid var(--border); margin-top:80px;
+  padding:36px 60px;
+  display:flex; justify-content:space-between; align-items:center;
+  color:var(--muted); font-size:13px;
+}
+.logo-f { font-family:'Syne',sans-serif; font-weight:800; font-size:14px; letter-spacing:3px; background:linear-gradient(90deg,var(--neon),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+/* JOIN BANNER */
+.join-banner {
+  position:relative; z-index:2;
+  margin:60px 60px 0;
+  border-radius:20px;
+  padding:50px 60px;
+  border:1px dashed rgba(191,95,255,0.3);
   text-align:center;
-  transition:.4s;
-
-  opacity:0;
-  transform:translateY(20px);
-  animation:fadeIn .6s forwards;
+  background:rgba(191,95,255,0.04);
 }
-
-.card:hover{
-  transform:translateY(-10px) scale(1.02);
+.join-banner h3 { font-family:'Syne',sans-serif; font-size:28px; font-weight:800; margin-bottom:10px; }
+.join-banner p { color:var(--muted); margin-bottom:24px; }
+.btn-primary {
+  display:inline-block; padding:14px 32px; border-radius:50px;
+  text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:13px; letter-spacing:1px; text-transform:uppercase;
+  background:linear-gradient(135deg,var(--purple),var(--neon)); color:#fff;
+  box-shadow:0 0 30px rgba(138,43,226,0.4); transition:transform .3s,box-shadow .3s;
 }
+.btn-primary:hover { transform:translateY(-3px) scale(1.03); box-shadow:0 0 50px rgba(191,95,255,0.55); }
 
-/* ===== ICONS ===== */
-.icon{
-  width:65px;
-  margin-bottom:15px;
-  filter:drop-shadow(0 0 10px rgba(88,101,242,.4));
-}
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
 
-/* SPECIAL GLOW FOR CEO */
-.ceo .icon{
-  filter:drop-shadow(0 0 18px gold);
-}
+.member-card:nth-child(1){animation-delay:.1s}
+.member-card:nth-child(2){animation-delay:.2s}
+.member-card:nth-child(3){animation-delay:.3s}
+.member-card:nth-child(4){animation-delay:.4s}
+.member-card:nth-child(5){animation-delay:.5s}
 
-/* ROLE TEXT */
-.role{
-  color:#5865F2;
-  font-size:13px;
-  margin-top:5px;
-}
-
-/* NAME SLOT */
-.name-slot{
-  margin-top:15px;
-  padding:10px;
-  border-radius:10px;
-  background:#0f0f18;
-  border:1px solid rgba(255,255,255,.06);
-  color:#aaa;
-  font-size:14px;
-}
-
-/* ===== CATEGORY COLORS ===== */
-.leadership h1{color:gold}
-.development h1{color:#5865F2}
-.business h1{color:#8b5cf6}
-
-/* ===== ANIMATION ===== */
-@keyframes fadeIn{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-.card:nth-child(1){animation-delay:.1s}
-.card:nth-child(2){animation-delay:.2s}
-.card:nth-child(3){animation-delay:.3s}
-.card:nth-child(4){animation-delay:.4s}
-.card:nth-child(5){animation-delay:.5s}
-
+@media(max-width:768px) { nav,footer,.category,.join-banner,.divider { padding-left:24px; padding-right:24px; } .member-card { margin:0; } }
 </style>
 </head>
-
 <body>
 
+<canvas id="bg-canvas"></canvas>
+
 <nav>
-  <h2>POV STUDIOS</h2>
-  <div>
+  <a href="index.html" class="logo">POV Studios</a>
+  <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="work.html">Our Work</a>
+    <a href="products.html">Products</a>
   </div>
 </nav>
 
-<!-- ===== LEADERSHIP ===== -->
-<section class="section leadership">
-
-<h1>Leadership</h1>
-
-<div class="grid">
-
-<div class="card ceo">
-<img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
-  <h3>Founder / CEO</h3>
-  <p class="role">Studio Owner</p>
-  <div class="name-slot">Caleb</div>
+<!-- HEADER -->
+<div class="page-header">
+  <div class="page-eyebrow">The People Behind POV</div>
+  <h1 class="page-title">Meet the <span>Team</span></h1>
+  <p class="page-sub">A crew of passionate Roblox creators building the next generation of games.</p>
 </div>
 
-<div class="card">
-  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png">
-  <h3>Studio Manager</h3>
-  <p class="role">Operations</p>
-  <div class="name-slot">Davo</div>
+<!-- LEADERSHIP -->
+<div class="category">
+  <div class="cat-label gold">★ Leadership</div>
+  <div class="team-grid">
+
+    <div class="member-card ceo">
+      <div class="avatar">👑</div>
+      <div class="member-role">Founder · CEO</div>
+      <div class="member-name">Caleb</div>
+      <div class="member-dept">Studio Owner · Vision & Direction</div>
+      <div class="member-tag">Founder</div>
+    </div>
+
+    <div class="member-card">
+      <div class="avatar">🎯</div>
+      <div class="member-role">Studio Manager</div>
+      <div class="member-name">Davo</div>
+      <div class="member-dept">Operations & Management</div>
+      <div class="member-tag">Manager</div>
+    </div>
+
+  </div>
 </div>
 
-</div>
-</section>
+<div class="divider"></div>
 
-<!-- ===== DEVELOPMENT ===== -->
-<section class="section development">
+<!-- DEVELOPMENT -->
+<div class="category" style="padding-top:50px">
+  <div class="cat-label purple">⚙️ Development</div>
+  <div class="team-grid">
 
-<h1>Development</h1>
+    <div class="member-card vacant">
+      <div class="avatar">💻</div>
+      <div class="member-role">Lead Developer</div>
+      <div class="member-name">Vacant</div>
+      <div class="member-dept">Programming · Architecture</div>
+      <div class="member-tag">Hiring</div>
+    </div>
 
-<div class="grid">
+    <div class="member-card vacant">
+      <div class="avatar">⚡</div>
+      <div class="member-role">Scripter Lead</div>
+      <div class="member-name">Vacant</div>
+      <div class="member-dept">Systems · Scripting</div>
+      <div class="member-tag">Hiring</div>
+    </div>
 
-<div class="card">
-  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1006/1006363.png">
-  <h3>Lead Developer</h3>
-  <p class="role">Programming</p>
-  <div class="name-slot">Vacant</div>
-</div>
+    <div class="member-card vacant">
+      <div class="avatar">🖥️</div>
+      <div class="member-role">UI/UX Designer</div>
+      <div class="member-name">Vacant</div>
+      <div class="member-dept">Interface Design</div>
+      <div class="member-tag">Hiring</div>
+    </div>
 
-<div class="card">
-  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/906/906324.png">
-  <h3>Scripter Lead</h3>
-  <p class="role">Systems</p>
-  <div class="name-slot">Vacant</div>
-</div>
-
-<div class="card">
-  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png">
-  <h3>UI/UX Designer</h3>
-  <p class="role">Interface Design</p>
-  <div class="name-slot">Vacant</div>
-</div>
-
-</div>
-</section>
-
-<!-- ===== BUSINESS ===== -->
-<section class="section business">
-
-<h1>Business & Growth</h1>
-
-<div class="grid">
-
-<div class="card">
-  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png">
-  <h3>Community Manager</h3>
-  <p class="role">Community</p>
-  <div class="name-slot">Vacant</div>
+  </div>
 </div>
 
-<div class="card">
-  <img class="icon" src="https://cdn-icons-png.flaticon.com/512/929/929564.png">
-  <h3>Marketing Manager</h3>
-  <p class="role">Growth</p>
-  <div class="name-slot">Vacant</div>
+<div class="divider"></div>
+
+<!-- BUSINESS -->
+<div class="category" style="padding-top:50px; padding-bottom:0;">
+  <div class="cat-label cyan">📈 Business & Growth</div>
+  <div class="team-grid">
+
+    <div class="member-card vacant">
+      <div class="avatar">🌐</div>
+      <div class="member-role">Community Manager</div>
+      <div class="member-name">Vacant</div>
+      <div class="member-dept">Community · Discord</div>
+      <div class="member-tag">Hiring</div>
+    </div>
+
+    <div class="member-card vacant">
+      <div class="avatar">📣</div>
+      <div class="member-role">Marketing Manager</div>
+      <div class="member-name">Vacant</div>
+      <div class="member-dept">Growth · Outreach</div>
+      <div class="member-tag">Hiring</div>
+    </div>
+
+  </div>
 </div>
 
+<!-- JOIN BANNER -->
+<div class="join-banner">
+  <h3>Want to join POV Studios?</h3>
+  <p>We're always looking for talented developers, designers, and builders.</p>
+  <a href="https://discord.gg/23mQPd7FG" class="btn-primary">Apply on Discord →</a>
 </div>
-</section>
 
+<!-- FOOTER -->
+<footer>
+  <span class="logo-f">POV Studios</span>
+  <span>© 2026 POV Studios. All rights reserved.</span>
+  <a href="https://discord.gg/23mQPd7FG" style="color:var(--neon);text-decoration:none;">Discord ↗</a>
+</footer>
+
+<script>
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize(); window.addEventListener('resize', resize);
+let mouse = {x:canvas.width/2, y:canvas.height/2};
+window.addEventListener('mousemove', e => { mouse.x=e.clientX; mouse.y=e.clientY; });
+const particles = Array.from({length:70}, () => ({
+  x:Math.random()*canvas.width, y:Math.random()*canvas.height,
+  r:Math.random()*1.5+0.3, dx:(Math.random()-.5)*.3, dy:(Math.random()-.5)*.3, alpha:Math.random()*.5+.2
+}));
+let t=0;
+function drawGrid() {
+  const s=60; ctx.strokeStyle='rgba(138,43,226,0.05)'; ctx.lineWidth=1;
+  for(let x=0;x<canvas.width;x+=s){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,canvas.height);ctx.stroke();}
+  for(let y=0;y<canvas.height;y+=s){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(canvas.width,y);ctx.stroke();}
+}
+function animate() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  drawGrid();
+  const g=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,350);
+  g.addColorStop(0,'rgba(138,43,226,0.1)'); g.addColorStop(1,'transparent');
+  ctx.fillStyle=g; ctx.fillRect(0,0,canvas.width,canvas.height);
+  const ox=canvas.width*.2+Math.sin(t*.002)*100, oy=canvas.height*.7+Math.cos(t*.003)*60;
+  const g2=ctx.createRadialGradient(ox,oy,0,ox,oy,250);
+  g2.addColorStop(0,'rgba(0,240,255,0.06)'); g2.addColorStop(1,'transparent');
+  ctx.fillStyle=g2; ctx.fillRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(191,95,255,${p.alpha})`; ctx.fill();
+    p.x+=p.dx; p.y+=p.dy;
+    if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
+    if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
+  });
+  t++; requestAnimationFrame(animate);
+}
+animate();
+</script>
 </body>
 </html>
